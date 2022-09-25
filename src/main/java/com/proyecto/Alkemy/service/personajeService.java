@@ -29,4 +29,14 @@ public class personajeService {
     public List<personaje> getPersonajeByNombreContaining(String nombre){
         return personajeRepository.findByNombreContaining(nombre);
     }
+
+    //Metodo para buscar un personaje por id
+    public personaje getPersonajeById(long id){
+        return personajeRepository.findById(id);
+    }
+
+    // metodos para saber si existe un personaje por id
+    public boolean existsById(long id){
+        return personajeRepository.existsById(id);
+    }
 }

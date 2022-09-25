@@ -21,6 +21,11 @@ public interface personajeRepository extends JpaRepository<personaje, Long> {
     //Consulta para buscar un nombre que sea igual al nombre que se le pasa por parametro
     List<personaje> findByNombreContaining(String nombre);
 
+    //consulta para buscar un personaje por id
+    personaje findById(long id);
+
+    boolean existsById(long id);
+
 
 
 }

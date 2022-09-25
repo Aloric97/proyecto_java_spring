@@ -16,5 +16,5 @@ public interface peliculaRepository extends JpaRepository<pelicula, Long> {
     //Deberá mostrar solamente los campos imagen, título y fecha de creación.
     @Query(value="SELECT p.imagen, p.titulo, p.fecha_creacion FROM pelicula p", nativeQuery = true)
     List<pelicula.peliculaProjection> getPeliculas();
-    
+
 }
