@@ -19,4 +19,6 @@ public class CrearUsuario {
                 () -> assertEquals("test", user.getPassword()));
 
     }
+
+    //Comprobar si acepta valores nulos
 }
