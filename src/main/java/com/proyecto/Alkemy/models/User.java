@@ -1,4 +1,4 @@
-package com.proyecto.Alkemy.controllers;
+package com.proyecto.Alkemy.models;
 
 
 import javax.persistence.*;
