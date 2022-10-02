@@ -24,8 +24,20 @@ public interface personajeRepository extends JpaRepository<personaje, Long> {
     //consulta para buscar un personaje por id
     personaje findById(long id);
 
+    //Comprueba si existe un personaje por id
     boolean existsById(long id);
 
+    //Crear un personaje
+    personaje save(personaje personaje);
+
+    //Borrar un personaje
+    void deleteById(long id);
+
+    //Borrar todos los personajes
+    void deleteAll();
+
+    //Actualizar un personaje
+    personaje update(personaje personaje);
 
 
 }

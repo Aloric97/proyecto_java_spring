@@ -67,9 +67,11 @@ public class personaje {
         this.edad = edad;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
+
+
 
     public void setPeso(float peso) {
         this.peso = peso;

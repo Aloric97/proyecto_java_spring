@@ -39,4 +39,26 @@ public class personajeService {
     public boolean existsById(long id){
         return personajeRepository.existsById(id);
     }
+
+    //Metodo para crear un personaje
+    public personaje save(personaje personaje){
+        return personajeRepository.save(personaje);
+    }
+
+    //Metodo para borrar un personaje
+    public void deleteById(long id){
+        personajeRepository.deleteById(id);
+    }
+
+    //Metodo para borrar todos los personajes
+    public void deleteAll(){
+        personajeRepository.deleteAll();
+    }
+
+    //Metodo para actualizar un personaje
+    public personaje update(personaje personaje){
+        return personajeRepository.save(personaje);
+    }
+
+
 }
