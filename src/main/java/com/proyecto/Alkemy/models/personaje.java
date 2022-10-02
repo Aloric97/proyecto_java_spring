@@ -22,7 +22,7 @@ public class personaje {
     @Column(name = "edad", nullable = false, length = 3)
     private int edad;
     @Column(name = "peso", nullable = false, length = 3)
-    private float peso;
+    private double peso;
     @Column(name = "historia", nullable = false, length = 500)
     private String historia;
 
@@ -73,7 +73,7 @@ public class personaje {
 
 
 
-    public void setPeso(float peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
@@ -91,5 +91,12 @@ public class personaje {
 
     public void setPeliculas(List<pelicula> peliculas) {
         this.peliculas = peliculas;
+    }
+
+    public long getId() {
+        return id_personaje;
+    }
+
+    public void setId(long id_personaje) {
     }
 }
