@@ -8,57 +8,31 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class personajeService {
+public interface personajeService {
 
-    @Autowired
-    private com.proyecto.Alkemy.repository.personajeRepository personajeRepository;
 
     //Metodo para obtener todos los personajes
-    public List<personaje> getAllPersonajes(){
-        return personajeRepository.findAll();
-    }
+    public List<personaje> getAllPersonajes();
 
     //Metodo para obtener todos los personajes por nombre
-    public List<personaje> getPersonajeByNombre(String nombre){
-        return personajeRepository.findByNombre(nombre);
-    }
+    public List<personaje> getPersonajeByNombre(String nombre);
 
-    //Metodo para obtener todos los personajes por nombre que contenga el nombre que se le pasa por parametro
-
-    public List<personaje> getPersonajeByNombreContaining(String nombre){
-        return personajeRepository.findByNombreContaining(nombre);
-    }
 
     //Metodo para buscar un personaje por id
-    public personaje getPersonajeById(long id){
-        return personajeRepository.findById(id);
-    }
+    public personaje getPersonajeById(long id);
 
     // metodos para saber si existe un personaje por id
-    public boolean existsById(long id){
-        return personajeRepository.existsById(id);
-    }
+    public boolean existsById(long id);
 
     //Metodo para crear un personaje
-    public personaje save(personaje personaje){
-        return personajeRepository.save(personaje);
-    }
+    public personaje save(personaje personaje);
 
     //Metodo para borrar un personaje
-    public void deleteById(long id){
-        personajeRepository.deleteById(id);
-    }
+    public String deleteById(long id);
 
     //Metodo para borrar todos los personajes
-    public void deleteAll(){
-        personajeRepository.deleteAll();
-    }
+    public void deleteAll();
 
-    //Metodo para actualizar un personaje
-    public personaje update(personaje personaje){
-        return personajeRepository.save(personaje);
-    }
 
 
 }
