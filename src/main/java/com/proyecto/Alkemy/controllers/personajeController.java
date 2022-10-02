@@ -1,5 +1,6 @@
 package com.proyecto.Alkemy.controllers;
 
+import com.proyecto.Alkemy.dto.Mensaje;
 import com.proyecto.Alkemy.models.personaje;
 import com.proyecto.Alkemy.service.personajeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,12 @@ public class personajeController {
 
     //Eliminar personaje por id
     @DeleteMapping("/delete/{id}")
-    ResponseEntity<personaje> deletePersonajeById(@PathVariable("id") long id)  {
+    ResponseEntity<?> deletePersonajeById(@PathVariable("id") long id)  {
         if(!personajeService.existsById(id)){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new Mensaje("No existe el personaje"),HttpStatus.NOT_FOUND);
         }
         personajeService.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(new Mensaje("Se ha eliminado el personaje:" +id ),HttpStatus.OK);
     }
 
     //endpoint para obtener todos los personajes
@@ -53,9 +54,9 @@ public class personajeController {
 
     // metodo para buscar personaje por id
     @GetMapping("/{id}")
-    ResponseEntity<personaje> getPersonajeById(@PathVariable("id") long id)  {
+    ResponseEntity<?> getPersonajeById(@PathVariable("id") long id)  {
            if(!personajeService.existsById(id)){
-               return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+               return new ResponseEntity<>(new Mensaje("El id: " + id +" no existe"),HttpStatus.NOT_FOUND);
            }
               return ResponseEntity.ok(personajeService.getPersonajeById(id));
     }
