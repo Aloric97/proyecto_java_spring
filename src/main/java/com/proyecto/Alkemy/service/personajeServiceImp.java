@@ -57,5 +57,10 @@ public class personajeServiceImp implements personajeService {
         personajeRepository.deleteAll();
     }
 
+    @Override
+    public List<personaje.personajeProjection> selectByNombreAndImagen() {
+        return personajeRepository.selectByNombreAndImagen();
+    }
+
 
 }

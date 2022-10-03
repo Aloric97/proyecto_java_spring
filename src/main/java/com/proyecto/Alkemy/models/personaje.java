@@ -29,7 +29,7 @@ public class personaje {
     @ManyToMany
     @JsonIgnore
     @JoinTable(name = "personaje_pelicula",
-            joinColumns = @JoinColumn(name = "id_personaje"),
+            joinColumns = @JoinColumn(name = "id_personaje",nullable = true),
             inverseJoinColumns = @JoinColumn(name = "id_pelicula")
             )
     private List<pelicula> peliculas;
@@ -98,5 +98,11 @@ public class personaje {
     }
 
     public void setId(long id_personaje) {
+    }
+
+    public interface personajeProjection {
+        String getImagen();
+        String getNombre();
+
     }
 }

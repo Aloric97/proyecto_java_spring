@@ -21,9 +21,50 @@ public class personajeController {
 
     //crear personaje
     @PostMapping("/create")
-    ResponseEntity<personaje> createPersonaje(@RequestBody personaje personaje){
-        return ResponseEntity.ok(personajeService.save(personaje));
+    ResponseEntity<?> createPersonaje(@RequestBody personaje personaje){
+
+        if(personaje.getNombre().isEmpty()){
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+
+        if(personaje.getEdad() == 0){
+            return new ResponseEntity(new Mensaje("La edad es obligatoria"), HttpStatus.BAD_REQUEST);
+        }
+
+        if(personaje.getHistoria().isEmpty()){
+            return new ResponseEntity(new Mensaje("La historia es obligatoria"), HttpStatus.BAD_REQUEST);
+        }
+
+        if(personaje.getPeso() == 0){
+            return new ResponseEntity(new Mensaje("El peso es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+
+
+        personajeService.save(personaje);
+        return new ResponseEntity(new Mensaje("Personaje creado"), HttpStatus.OK);
     }
+
+    //actualizar personaje
+    @PatchMapping("/update/{id}")
+    ResponseEntity<?> updatePersonaje(@PathVariable("id") long id, @RequestBody personaje personaje){
+
+        if(!personajeService.existsById(id)){
+            return new ResponseEntity(new Mensaje("No existe el personaje"), HttpStatus.NOT_FOUND);
+        }
+
+        personaje personaje1 = personajeService.getPersonajeById(id);
+        personaje1.setNombre(personaje.getNombre());
+        personaje1.setImagen(personaje.getImagen());
+        personaje1.setEdad(personaje.getEdad());
+        personaje1.setHistoria(personaje.getHistoria());
+        personaje1.setPeso(personaje.getPeso());
+
+        personajeService.save(personaje);
+        return new ResponseEntity(new Mensaje("Personaje actualizado"), HttpStatus.OK);
+
+    }
+
+
 
 
 
@@ -37,13 +78,13 @@ public class personajeController {
         return new ResponseEntity<>(new Mensaje("Se ha eliminado el personaje:" +id ),HttpStatus.OK);
     }
 
-    //endpoint para obtener todos los personajes
+    //obtener todos los personajes
     @GetMapping("/all")
     ResponseEntity<List<personaje>> getAllPersonajes(){
         return ResponseEntity.ok(personajeService.getAllPersonajes());
     }
 
-    //endpoint para obtener un personaje por nombre que contenga el nombre que se le pasa por parametro
+    // un personaje por nombre que contenga el nombre que se le pasa por parametro
     @GetMapping(params = "name")
     ResponseEntity<List<personaje>> getPersonajeByNombreContaining(@RequestParam String name){
         if (personajeService.getPersonajeByNombre(name).isEmpty()){
@@ -62,6 +103,11 @@ public class personajeController {
     }
 
 
+    //Listar personajes solo por nombre y imagen
+    @GetMapping("/nombreImagen")
+    ResponseEntity<List<personaje.personajeProjection>> getPersonajeByNombreImagen(){
+        return ResponseEntity.ok(personajeService.selectByNombreAndImagen());
+    }
 
 
 }

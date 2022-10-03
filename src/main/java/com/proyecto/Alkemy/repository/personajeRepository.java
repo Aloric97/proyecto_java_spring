@@ -35,7 +35,9 @@ public interface personajeRepository extends JpaRepository<personaje, Long> {
     //Borrar todos los personajes
     void deleteAll();
 
-
+    // lista de personajes por nombre e imagen
+    @Query(value = "SELECT nombre,imagen FROM personaje", nativeQuery = true)
+    List<personaje.personajeProjection> selectByNombreAndImagen();
 
 
 }

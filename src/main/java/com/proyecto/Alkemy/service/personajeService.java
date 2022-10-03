@@ -33,6 +33,7 @@ public interface personajeService {
     //Metodo para borrar todos los personajes
     public void deleteAll();
 
-
+    // lista de personajes por nombre e imagen
+    public List<personaje.personajeProjection> selectByNombreAndImagen();
 
 }
