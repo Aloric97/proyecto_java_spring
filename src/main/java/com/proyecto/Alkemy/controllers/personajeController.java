@@ -3,6 +3,7 @@ package com.proyecto.Alkemy.controllers;
 import com.proyecto.Alkemy.dto.Mensaje;
 import com.proyecto.Alkemy.models.personaje;
 import com.proyecto.Alkemy.service.personajeService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,10 @@ public class personajeController {
     personajeService personajeService;
 
 
-    //crear personaje
+
     @PostMapping("/create")
+    @ApiOperation(value = "Crea un personaje", notes = "Recibe un personaje y lo crea")
+
     ResponseEntity<?> createPersonaje(@RequestBody personaje personaje){
 
         if(personaje.getNombre().isEmpty()){
@@ -46,6 +49,7 @@ public class personajeController {
 
     //actualizar personaje
     @PatchMapping("/update/{id}")
+    @ApiOperation(value = "Actualiza un personaje", notes = "Recibe un personaje y lo actualiza")
     ResponseEntity<?> updatePersonaje(@PathVariable("id") long id, @RequestBody personaje personaje){
 
         if(!personajeService.existsById(id)){
@@ -70,6 +74,7 @@ public class personajeController {
 
     //Eliminar personaje por id
     @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "Elimina un personaje", notes = "Recibe un id y elimina el personaje")
     ResponseEntity<?> deletePersonajeById(@PathVariable("id") long id)  {
         if(!personajeService.existsById(id)){
             return new ResponseEntity<>(new Mensaje("No existe el personaje"),HttpStatus.NOT_FOUND);
@@ -80,12 +85,14 @@ public class personajeController {
 
     //obtener todos los personajes
     @GetMapping("/all")
+    @ApiOperation(value = "Obtiene todos los personajes", notes = "Obtiene todos los personajes")
     ResponseEntity<List<personaje>> getAllPersonajes(){
         return ResponseEntity.ok(personajeService.getAllPersonajes());
     }
 
     // un personaje por nombre que contenga el nombre que se le pasa por parametro
     @GetMapping(params = "name")
+    @ApiOperation(value = "Obtiene un personaje por nombre", notes = "Obtiene un personaje por nombre")
     ResponseEntity<List<personaje>> getPersonajeByNombreContaining(@RequestParam String name){
         if (personajeService.getPersonajeByNombre(name).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -95,6 +102,7 @@ public class personajeController {
 
     // metodo para buscar personaje por id
     @GetMapping("/{id}")
+    @ApiOperation(value = "Obtiene un personaje por id", notes = "Obtiene un personaje por id")
     ResponseEntity<?> getPersonajeById(@PathVariable("id") long id)  {
            if(!personajeService.existsById(id)){
                return new ResponseEntity<>(new Mensaje("El id: " + id +" no existe"),HttpStatus.NOT_FOUND);
@@ -105,6 +113,7 @@ public class personajeController {
 
     //Listar personajes solo por nombre y imagen
     @GetMapping("/nombreImagen")
+    @ApiOperation(value = "Obtiene un personaje por nombre e imagen", notes = "Obtiene un personaje por nombre e imagen")
     ResponseEntity<List<personaje.personajeProjection>> getPersonajeByNombreImagen(){
         return ResponseEntity.ok(personajeService.selectByNombreAndImagen());
     }
