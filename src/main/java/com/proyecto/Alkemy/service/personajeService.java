@@ -15,7 +15,7 @@ public interface personajeService {
     public List<personaje> getAllPersonajes();
 
     //Metodo para obtener todos los personajes por nombre
-    public List<personaje> getPersonajeByNombre(String nombre);
+    public List<personaje> findByNombreContaining(String nombre);
 
 
     //Metodo para buscar un personaje por id
@@ -35,5 +35,7 @@ public interface personajeService {
 
     // lista de personajes por nombre e imagen
     public List<personaje.personajeProjection> selectByNombreAndImagen();
+
+    public List<personaje> findByEdadEquals(int age);
 
 }

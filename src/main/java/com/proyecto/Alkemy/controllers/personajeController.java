@@ -90,15 +90,7 @@ public class personajeController {
         return ResponseEntity.ok(personajeService.getAllPersonajes());
     }
 
-    // un personaje por nombre que contenga el nombre que se le pasa por parametro
-    @GetMapping(params = "name")
-    @ApiOperation(value = "Obtiene un personaje por nombre", notes = "Obtiene un personaje por nombre")
-    ResponseEntity<List<personaje>> getPersonajeByNombreContaining(@RequestParam String name){
-        if (personajeService.getPersonajeByNombre(name).isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.ok(personajeService.getPersonajeByNombre(name));
-    }
+
 
     // metodo para buscar personaje por id
     @GetMapping("/{id}")
@@ -117,6 +109,28 @@ public class personajeController {
     ResponseEntity<List<personaje.personajeProjection>> getPersonajeByNombreImagen(){
         return ResponseEntity.ok(personajeService.selectByNombreAndImagen());
     }
+
+    // un personaje que filtra por nombre que se le pasa por parametro
+    @GetMapping(params = "name")
+    @ApiOperation(value = "filtra personaje por nombre", notes = "Obtiene un personaje por nombre")
+    ResponseEntity<List<personaje>> findByNombreContaining(@RequestParam String name){
+        if (personajeService.findByNombreContaining(name).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(personajeService.findByNombreContaining(name));
+    }
+
+    // un personaje que filtra por edad que se le pasa por parametro
+    @GetMapping(params="age")
+    @ApiOperation(value="filtra personaje por edad", notes="Obtiene un personaje por edad")
+    ResponseEntity<List<personaje>> findByAgeEquals(@RequestParam int age){
+        if (personajeService.findByEdadEquals(age).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.ok(personajeService.findByEdadEquals(age));
+    }
+
 
 
 }

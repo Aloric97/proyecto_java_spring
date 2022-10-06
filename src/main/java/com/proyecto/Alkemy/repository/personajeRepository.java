@@ -17,7 +17,7 @@ public interface personajeRepository extends JpaRepository<personaje, Long> {
     List<personaje> findAll();
 
     //Consulta para obtener todos los personajes con el mismo nombre
-    List<personaje> findByNombre(String nombre);
+    List<personaje> findByNombreContaining (String nombre);
 
 
     //consulta para buscar un personaje por id
@@ -38,6 +38,10 @@ public interface personajeRepository extends JpaRepository<personaje, Long> {
     // lista de personajes por nombre e imagen
     @Query(value = "SELECT nombre,imagen FROM personaje", nativeQuery = true)
     List<personaje.personajeProjection> selectByNombreAndImagen();
+
+    // lista
+    List<personaje> findByEdadEquals(int age);
+
 
 
 }

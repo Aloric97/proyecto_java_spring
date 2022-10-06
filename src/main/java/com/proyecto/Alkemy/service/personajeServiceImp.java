@@ -20,8 +20,8 @@ public class personajeServiceImp implements personajeService {
     }
 
     @Override
-    public List<personaje> getPersonajeByNombre(String nombre) {
-        return personajeRepository.findByNombre(nombre);
+    public List<personaje> findByNombreContaining(String nombre) {
+        return personajeRepository.findByNombreContaining(nombre);
     }
 
 
@@ -60,6 +60,11 @@ public class personajeServiceImp implements personajeService {
     @Override
     public List<personaje.personajeProjection> selectByNombreAndImagen() {
         return personajeRepository.selectByNombreAndImagen();
+    }
+
+    @Override
+    public List<personaje> findByEdadEquals(int age) {
+        return personajeRepository.findByEdadEquals(age);
     }
 
 

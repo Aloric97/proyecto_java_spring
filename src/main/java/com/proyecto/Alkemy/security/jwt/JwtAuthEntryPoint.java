@@ -1,6 +1,7 @@
 package com.proyecto.Alkemy.security.jwt;
 
 
+import com.proyecto.Alkemy.dto.Mensaje;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
@@ -26,6 +27,6 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
                          HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException {
         log.error("Unauthorized error: {}", e.getMessage());
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED,new Mensaje("No autorizado").toString());
     }
 }

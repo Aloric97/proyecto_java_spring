@@ -26,7 +26,7 @@ public class personaje {
     @Column(name = "historia", nullable = false, length = 500)
     private String historia;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(name = "personaje_pelicula",
             joinColumns = @JoinColumn(name = "id_personaje",nullable = true),
