@@ -21,6 +21,7 @@ El formato de intercambio de datos normalmente es JSON o XML.
 
 1- Una API REST es un conjunto de definiciones y protocolos que permiten la comunicación entre aplicaciones.
 
+
 ### ¿Qué significa API REST?
 
 REST viene de, `REpresentational State Transfer`
@@ -30,6 +31,7 @@ REST se compone de una lista de reglas que se deben cumplir en el diseño de la 
 
 Restful = adjetivo, Rest = Nombre
 
+![](../../../Material/restful-api-design-620x2631.jpg)
 
 ### Métodos
 
@@ -121,6 +123,7 @@ De esta manera, la configuración contextual de las pruebas se puede combinar co
 ### `jjwt`
 
 jjwt es una biblioteca de Java para crear y analizar JSON Web Tokens (JWT). Los JWT son una forma compacta y segura de transmitir información entre partes como un objeto JSON. Los JWT se pueden firmar usando un secreto (con el algoritmo HMAC) o una clave pública / privada usando RSA o ECDSA.
+![](../../../Material/Token_JWT.png)
 
 ### `Swagger`
 
