@@ -70,17 +70,17 @@ Las solicitudes de la API RESTful pueden incluir parámetros que brindan al serv
 
 ### Códigos de estado
 
-Los códigos de estado HTTP indican si la solicitud se ha completado correctamente o no. Los códigos de estado HTTP se dividen en cinco categorías:
+`2xx` – Indican que la petición se ha satisfecho correctamente
+Serán habituales el código 200 (todo fue bien y se ha encontrado el recurso y procesado la respuesta), el 201 (todo OK se ha creado el nuevo recurso) o 204 (todo bien pero no se ha devuelto ningún contenido).
 
-* 1xx: información
+`3xx`- indican que el recurso solicitado está en otra URI diferente
+Son comunes la 301 (el recurso se ha cambiado de ubicación definitivamente y nos indica la nueva ubicación), el 302 (el recurso que solicitas se ha movido temporalmente a este otro recurso), aquellos que tengan nociones básicas de SEO estarán familiarizados con estos dos casos.
 
-* 2xx: éxito
+`4xx` – indican códigos de error en el lado del cliente
+En este caso el uso de 400 nos indica que hay un error en el formato o que es demasiado largo, 401 para decirnos que no tenemos autorización para ese recurso o 403, para indicarnos que el acceso al recurso no está permitido y el servidor ha rechazado nuestra petición. También es relevante el error 405 que nos indica que el método no se admite en la API.
 
-* 3xx: redirección
-
-* 4xx: error del cliente
-
-* 5xx: error del servidor
+`5xx`- indican códigos de error en el lado del servidor
+En este último grupo están el error 500, cuando ha habido algún error interno del servidor, 502, cuando el servidor hace de Gateway o proxy y ha recibido una respuesta de error a donde quiera que intentase conectarse o el 503 cuando el servicio en el servidor no está accesible, normalmente debido a una sobrecarga o algún problema similar.
 
 
 ## 2- Dependencias de Spring
