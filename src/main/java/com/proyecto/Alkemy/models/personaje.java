@@ -1,9 +1,11 @@
 package com.proyecto.Alkemy.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "personaje")
@@ -27,12 +29,12 @@ public class personaje {
     private String historia;
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JoinTable(name = "personaje_pelicula",
-            joinColumns = @JoinColumn(name = "id_personaje",nullable = true),
-            inverseJoinColumns = @JoinColumn(name = "id_pelicula")
+    @JoinTable(name = "PERSONAJE_PELICULA_TABLE",
+            joinColumns = @JoinColumn(name = "id_personaje",referencedColumnName ="id_personaje" ),
+            inverseJoinColumns = @JoinColumn(name = "id_pelicula", referencedColumnName = "id_pelicula")
             )
-    private List<pelicula> peliculas;
+    @JsonManagedReference
+    private Set<pelicula> peliculas= new HashSet<>();
 
 
     public Long getId_personaje() {
@@ -85,11 +87,11 @@ public class personaje {
         this.historia = historia;
     }
 
-    public List<pelicula> getPeliculas() {
+    public Set<pelicula> getPeliculas() {
         return peliculas;
     }
 
-    public void setPeliculas(List<pelicula> peliculas) {
+    public void setPeliculas(Set<pelicula> peliculas) {
         this.peliculas = peliculas;
     }
 
