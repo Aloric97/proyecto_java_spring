@@ -29,15 +29,12 @@ public class personajeController {
         if(personaje.getNombre().isEmpty()){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-
         if(personaje.getEdad() == 0){
             return new ResponseEntity(new Mensaje("La edad es obligatoria"), HttpStatus.BAD_REQUEST);
         }
-
         if(personaje.getHistoria().isEmpty()){
             return new ResponseEntity(new Mensaje("La historia es obligatoria"), HttpStatus.BAD_REQUEST);
         }
-
         if(personaje.getPeso() == 0){
             return new ResponseEntity(new Mensaje("El peso es obligatorio"), HttpStatus.BAD_REQUEST);
         }
@@ -69,9 +66,6 @@ public class personajeController {
     }
 
 
-
-
-
     //Eliminar personaje por id
     @DeleteMapping("/delete/{id}")
     @ApiOperation(value = "Elimina un personaje", notes = "Recibe un id y elimina el personaje")
@@ -83,9 +77,9 @@ public class personajeController {
         return new ResponseEntity<>(new Mensaje("Se ha eliminado el personaje:" +id ),HttpStatus.OK);
     }
 
-    //obtener todos los personajes
+    //obtener todos los personajes, incluyendo los que no tienen peliculas
     @GetMapping("/all")
-    @ApiOperation(value = "Obtiene todos los personajes", notes = "Obtiene todos los personajes")
+    @ApiOperation(value = "Obtiene todos los personajes, incluyendo los que no tienen peliculas", notes = "Obtiene todos los personajes, incluyendo los que no tienen peliculas")
     ResponseEntity<List<personaje>> getAllPersonajes(){
         return ResponseEntity.ok(personajeService.getAllPersonajes());
     }
@@ -130,6 +124,7 @@ public class personajeController {
 
         return ResponseEntity.ok(personajeService.findByEdadEquals(age));
     }
+
 
 
 
