@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class personajeServiceImp implements personajeService {
@@ -39,6 +40,7 @@ public class personajeServiceImp implements personajeService {
     public personaje save(personaje personaje) {
         if (personaje != null) {
             return personajeRepository.save(personaje);
+
         }
         return null;
     }
@@ -66,6 +68,12 @@ public class personajeServiceImp implements personajeService {
     public List<personaje> findByEdadEquals(int age) {
         return personajeRepository.findByEdadEquals(age);
     }
+
+    @Override
+    public Optional<personaje> findById(Long id) {
+        return personajeRepository.findById(id);
+    }
+
 
 
 

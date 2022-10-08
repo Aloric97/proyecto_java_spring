@@ -8,10 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface personajeRepository extends JpaRepository<personaje, Long> {
-
 
     //Consulta para obtener todos los personajes
     List<personaje> findAll();
@@ -43,6 +43,5 @@ public interface personajeRepository extends JpaRepository<personaje, Long> {
     List<personaje> findByEdadEquals(int age);
 
 
-
-
+    Optional<personaje> findById(Long id);
 }

@@ -38,6 +38,8 @@ public class personaje {
     private Set<pelicula> peliculas= new HashSet<>();
 
 
+
+
     public Long getId_personaje() {
         return id_personaje;
     }
